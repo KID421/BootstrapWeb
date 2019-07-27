@@ -153,7 +153,7 @@
     </div>
 
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel">
@@ -166,6 +166,29 @@
                     <div> <img src="https://fakeimg.pl/250x100/666666/?text=IMG7"> </div>
                 </div>
             </div>
+        </div>
+    </div> -->
+
+    <div class="owl-carousel owl-theme owl-loaded owl-drag">
+        <div class="owl-stage-outer">
+            <div class="owl-stage">
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG1"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG2"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG3"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG4"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG5"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG6"></div>
+                <div class="owl-item"><img src="https://fakeimg.pl/250x100/666666/?text=IMG7"></div>
+            </div>
+        </div>
+        <div class="owl-nav">
+            <div class="owl-prev">prev</div>
+            <div class="owl-next">next</div>
+        </div>
+        <div class="owl-dots">
+            <div class="owl-dot active"><span></span></div>
+            <div class="owl-dot"><span></span></div>
+            <div class="owl-dot"><span></span></div>
         </div>
     </div>
 
@@ -184,14 +207,39 @@
 
     <!-- OWL -->
     <script src="owl.carousel.min.js"></script>
+    <script src="jquery.mousewheel.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                items:6,
-                loop:true,
-                margin:10
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                loop: true,
+                nav: true,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    960: {
+                        items: 5
+                    },
+                    1200: {
+                        items: 6
+                    }
+                }
+            });
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
             });
         });
+
     </script>
 </body>
 
